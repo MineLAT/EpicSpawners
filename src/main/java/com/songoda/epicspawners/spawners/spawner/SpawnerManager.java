@@ -31,6 +31,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class SpawnerManager {
@@ -41,7 +42,7 @@ public class SpawnerManager {
     private final Map<String, SpawnerData> registeredSpawnerData = new LinkedHashMap<>();
 
     // These are spawners that exist in the game world.
-    private final Map<Location, PlacedSpawner> spawnersInWorld = new HashMap<>();
+    private final Map<Location, PlacedSpawner> spawnersInWorld = new ConcurrentHashMap<>();
 
     // This is the map that holds the cooldowns for picking up stuffs
     private final List<PlacedSpawner> pickingUp = new ArrayList<>();
