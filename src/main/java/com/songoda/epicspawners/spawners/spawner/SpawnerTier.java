@@ -20,7 +20,7 @@ import com.songoda.epicspawners.spawners.spawner.option.SpawnOptionEntity_1_12;
 import com.songoda.epicspawners.spawners.spawner.option.SpawnOptionEntity_1_13;
 import com.songoda.epicspawners.spawners.spawner.option.SpawnOptionItem;
 import com.songoda.epicspawners.utils.CostType;
-import org.apache.commons.lang.math.NumberUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;

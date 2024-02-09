@@ -3,7 +3,7 @@ package com.songoda.epicspawners.spawners.condition;
 import com.google.common.collect.Iterables;
 import com.songoda.epicspawners.EpicSpawners;
 import com.songoda.epicspawners.spawners.spawner.PlacedSpawner;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.text.WordUtils;
 import org.bukkit.block.Biome;
 
 import java.util.EnumSet;

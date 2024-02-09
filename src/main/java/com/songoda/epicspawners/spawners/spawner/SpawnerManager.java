@@ -18,7 +18,7 @@ import com.songoda.epicspawners.spawners.condition.SpawnConditionNearbyPlayers;
 import com.songoda.epicspawners.spawners.condition.SpawnConditionStorm;
 import com.songoda.epicspawners.utils.SpawnerDataBuilder;
 import com.songoda.epicspawners.utils.SpawnerTierBuilder;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.text.WordUtils;
 import org.bukkit.Location;
 import org.bukkit.block.Biome;
 import org.bukkit.block.CreatureSpawner;
