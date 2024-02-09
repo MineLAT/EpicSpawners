@@ -233,11 +233,10 @@ public class SpawnerManager {
 
         SpawnerTier tier = tierBuilder.build();
 
+        tier.addCondition(new SpawnConditionBiome(Biome.values()));
         if (type == EntityType.SLIME) {
-            tier.addCondition(new SpawnConditionBiome(CompatibleBiome.SWAMP.getBiome()));
             tier.addCondition(new SpawnConditionHeight(50, 70));
         } else {
-            tier.addCondition(new SpawnConditionBiome(Biome.values()));
             tier.addCondition(new SpawnConditionHeight(0, 256));
         }
         if (Monster.class.isAssignableFrom(type.getEntityClass())) {
