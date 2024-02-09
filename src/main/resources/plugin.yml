@@ -1,6 +1,6 @@
 name: EpicSpawners
 description: EpicSpawners
-version: maven-version-number
+version: ${version}
 softdepend: [Holograms, HolographicDisplays, CMI, Vault, PlayerPoints, UltimateStacker, StackMob, SkyBlock, Towny, RedProtect, Kingdoms, PlotSquared, GriefPrevention, USkyBlock, ASkyBlock, WorldGuard, Factions, PlaceholderAPI, ShopGUIPlus, UltimateClaims, Lands, BentoBox]
 main: com.songoda.epicspawners.EpicSpawners
 author: songoda

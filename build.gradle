@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'idea'
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+repositories {
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://oss.sonatype.org/content/repositories/central' }
+    maven { url 'https://repo.craftaro.com/repository/public/' }
+    maven { url 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
+    maven { url 'https://jitpack.io' }
+    mavenCentral()
+}
+
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.yml'
+        expand(rootProject.properties)
+    }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT'
+
+    compileOnly 'com.songoda:UltimateStacker:2.1.1'
+    compileOnly 'me.clip:placeholderapi:2.10.8'
+    compileOnly 'com.github.brcdev-minecraft:shopgui-api:1.0.0'
+
+    //implementation 'com.songoda:SongodaCore:2.4.44'
+    //implementation 'com.songoda:Lootables:1.0.8'
+    implementation fileTree(dir: 'libs', includes: ['*.jar'])
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+jar {
+    enabled = false
+    dependsOn (shadowJar)
+}
+
+shadowJar {
+    archiveClassifier.set('')
+    relocate 'com.songoda.core', project.group + '.core'
+    minimize()
+}
