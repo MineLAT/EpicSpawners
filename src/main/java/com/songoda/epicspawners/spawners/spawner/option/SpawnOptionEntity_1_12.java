@@ -306,7 +306,7 @@ public class SpawnOptionEntity_1_12 implements SpawnOption {
             CompatibleMaterial spawnedIn = CompatibleMaterial.getMaterial(location.getBlock());
             CompatibleMaterial spawnedOn = CompatibleMaterial.getMaterial(location.getBlock().getRelative(BlockFace.DOWN));
 
-            if (!spawnedIn.isAir()
+            if (spawnedIn != null && !spawnedIn.isAir()
                     && !spawnedIn.isWater()
                     && !spawnedIn.name().contains("PRESSURE")
                     && !spawnedIn.name().contains("SLAB")) {
@@ -316,7 +316,7 @@ public class SpawnOptionEntity_1_12 implements SpawnOption {
             for (CompatibleMaterial material : spawnBlocks) {
                 if (material == null) continue;
 
-                if (spawnedOn.equals(material) || material.isAir())
+                if (spawnedOn != null && spawnedOn.equals(material) || material.isAir())
                     return true;
             }
         } catch (InvocationTargetException | IllegalAccessException e) {
