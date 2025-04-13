@@ -32,7 +32,6 @@ processResources {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT'
 
-    compileOnly 'com.songoda:UltimateStacker:2.1.1'
     compileOnly 'me.clip:placeholderapi:2.11.5'
     compileOnly 'com.github.brcdev-minecraft:shopgui-api:1.0.0'
 

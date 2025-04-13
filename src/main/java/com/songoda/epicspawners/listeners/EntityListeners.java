@@ -13,7 +13,6 @@ import com.songoda.lootables.loot.Drop;
 import com.songoda.lootables.loot.DropUtils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -41,13 +40,9 @@ import java.util.List;
 public class EntityListeners implements Listener {
 
     private final EpicSpawners plugin;
-    private com.songoda.ultimatestacker.UltimateStacker ultimateStacker = null;
 
     public EntityListeners(EpicSpawners plugin) {
         this.plugin = plugin;
-        if (Bukkit.getPluginManager().isPluginEnabled("UltimateStacker")) {
-            ultimateStacker = com.songoda.ultimatestacker.UltimateStacker.getInstance();
-        }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
@@ -138,12 +133,6 @@ public class EntityListeners implements Listener {
 
         int amount = 1;
 
-        if (ultimateStacker != null) {
-            boolean killAll = com.songoda.ultimatestacker.settings.Settings.KILL_WHOLE_STACK_ON_DEATH.getBoolean();
-            if (ultimateStacker.getEntityStackManager().isStacked(event.getEntity().getUniqueId()) && killAll) {
-                amount = ultimateStacker.getEntityStackManager().getStack(event.getEntity().getUniqueId()).getAmount();
-            }
-        }
         PlayerDataManager playerDataManager = plugin.getPlayerDataManager();
 
         PlayerData playerData = playerDataManager.getPlayerData(player);

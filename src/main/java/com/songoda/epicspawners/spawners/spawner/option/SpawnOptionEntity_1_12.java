@@ -21,10 +21,8 @@ import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.plugin.Plugin;
 import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory;
 
 import javax.script.ScriptEngine;
@@ -49,8 +47,6 @@ public class SpawnOptionEntity_1_12 implements SpawnOption {
     private final ScriptEngine engine;
 
     private final EpicSpawners plugin = EpicSpawners.getInstance();
-
-    private boolean useUltimateStacker;
 
     private boolean mcmmo;
 
@@ -79,10 +75,6 @@ public class SpawnOptionEntity_1_12 implements SpawnOption {
     public SpawnOptionEntity_1_12(EntityType... types) {
         this.types = types;
         this.engine = scriptEngineFactory.get().getScriptEngine();
-
-        if (Bukkit.getPluginManager().isPluginEnabled("UltimateStacker")) {
-            this.useUltimateStacker = ((Plugin) com.songoda.ultimatestacker.UltimateStacker.getInstance()).getConfig().getBoolean("Entities.Enabled");
-        }
 
         init();
     }
@@ -182,22 +174,13 @@ public class SpawnOptionEntity_1_12 implements SpawnOption {
         // Calculate the amount of entities to spawn.
         spawnCount = Math.min(maxEntitiesAllowed - size, spawnCount) + spawner.getBoosts().stream().mapToInt(Boosted::getAmountBoosted).sum();
 
-        // Check to make sure we're not spawning a stack smaller than the minimum stack size.
-        boolean useUltimateStacker = this.useUltimateStacker && com.songoda.ultimatestacker.settings
-                .Settings.DISABLED_WORLDS.getStringList().stream()
-                .noneMatch(worldStr -> location.getWorld().getName().equalsIgnoreCase(worldStr))
-                && spawnCount >= com.songoda.ultimatestacker.settings.Settings.MIN_STACK_ENTITIES.getInt();
-
-        int spawnCountUsed = useUltimateStacker ? 1 : spawnCount;
+        int spawnCountUsed = spawnCount;
 
         while (spawnCountUsed-- > 0) {
             EntityType type = types[ThreadLocalRandom.current().nextInt(types.length)];
             Entity entity = spawnEntity(type, spawner, data);
             if (entity != null) {
-                // If we're using UltimateStacker and this entity is indeed stackable then spawn a single stack with the desired stack size.
-                if (useUltimateStacker && com.songoda.ultimatestacker.UltimateStacker.getInstance().getMobFile().getBoolean("Mobs." + entity.getType().name() + ".Enabled"))
-                    com.songoda.ultimatestacker.UltimateStacker.getInstance().getEntityStackManager().addStack((LivingEntity) entity, spawnCount);
-                spawner.setSpawnCount(spawner.getSpawnCount() + (useUltimateStacker ? spawnCount : 1));
+                spawner.setSpawnCount(spawner.getSpawnCount() + 1);
                 EpicSpawners.getInstance().getDataManager().updateSpawner(spawner);
             }
         }
