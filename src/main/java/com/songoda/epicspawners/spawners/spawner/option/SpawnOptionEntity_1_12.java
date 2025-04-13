@@ -1,5 +1,6 @@
 package com.songoda.epicspawners.spawners.spawner.option;
 
+import com.google.common.base.Suppliers;
 import com.songoda.core.compatibility.CompatibleMaterial;
 import com.songoda.core.compatibility.CompatibleParticleHandler;
 import com.songoda.core.compatibility.ServerVersion;
@@ -24,9 +25,9 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.Plugin;
+import org.openjdk.nashorn.api.scripting.NashornScriptEngineFactory;
 
 import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -37,8 +38,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Supplier;
 
 public class SpawnOptionEntity_1_12 implements SpawnOption {
+
+    private static final Supplier<NashornScriptEngineFactory> scriptEngineFactory = Suppliers.memoize(NashornScriptEngineFactory::new);
 
     private final EntityType[] types;
 
@@ -74,7 +78,7 @@ public class SpawnOptionEntity_1_12 implements SpawnOption {
 
     public SpawnOptionEntity_1_12(EntityType... types) {
         this.types = types;
-        this.engine = new ScriptEngineManager(null).getEngineByName("JavaScript");
+        this.engine = scriptEngineFactory.get().getScriptEngine();
 
         if (Bukkit.getPluginManager().isPluginEnabled("UltimateStacker")) {
             this.useUltimateStacker = ((Plugin) com.songoda.ultimatestacker.UltimateStacker.getInstance()).getConfig().getBoolean("Entities.Enabled");
