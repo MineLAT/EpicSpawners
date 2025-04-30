@@ -5,7 +5,6 @@ import com.songoda.core.compatibility.CompatibleMaterial;
 import com.songoda.core.compatibility.ServerVersion;
 import com.songoda.core.hooks.EconomyManager;
 import com.songoda.core.utils.ItemUtils;
-import com.songoda.core.utils.PlayerUtils;
 import com.songoda.epicspawners.EpicSpawners;
 import com.songoda.epicspawners.api.events.SpawnerBreakEvent;
 import com.songoda.epicspawners.api.events.SpawnerChangeEvent;
@@ -143,16 +142,6 @@ public class BlockListeners implements Listener {
                 plugin.getLocale().getMessage("event.block.chunklimit")
                         .processPlaceholder("amount", maxPerChunk)
                         .sendPrefixedMessage(player);
-                event.setCancelled(true);
-                return;
-            }
-
-            int amountPlaced = plugin.getSpawnerManager().getAmountPlaced(player);
-            int maxSpawners = PlayerUtils.getNumberFromPermission(player, "epicspawners.limit", Settings.MAX_SPAWNERS.getInt());
-
-            if (maxSpawners != -1 && amountPlaced > maxSpawners) {
-                player.sendMessage(plugin.getLocale().getMessage("event.spawner.toomany")
-                        .processPlaceholder("amount", maxSpawners).getMessage());
                 event.setCancelled(true);
                 return;
             }
