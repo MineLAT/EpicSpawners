@@ -25,6 +25,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockExpEvent;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 
@@ -187,6 +188,20 @@ public class BlockListeners implements Listener {
         Bukkit.getServer().
                 getScheduler().
                 scheduleSyncDelayedTask(plugin, () -> plugin.processChange(event.getBlock()), 10L);
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onSpawnerBreak(BlockBreakEvent event) {
+        if (CompatibleMaterial.getMaterial(event.getBlock()) == CompatibleMaterial.SPAWNER) {
+            event.setExpToDrop(0);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onExp(BlockExpEvent event) {
+        if (CompatibleMaterial.getMaterial(event.getBlock()) == CompatibleMaterial.SPAWNER) {
+            event.setExpToDrop(0);
+        }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
