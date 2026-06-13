@@ -11,7 +11,6 @@ import org.bukkit.block.Biome;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -136,7 +135,7 @@ public class SpawnerData {
     }
 
     public List<SpawnerTier> getTiers() {
-        return Collections.unmodifiableList(spawnerTiers);
+        return spawnerTiers;
     }
 
     public SpawnerTier getTier(String tierName) {

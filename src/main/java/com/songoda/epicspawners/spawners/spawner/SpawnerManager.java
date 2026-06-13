@@ -103,7 +103,7 @@ public class SpawnerManager {
     }
 
     public Collection<SpawnerData> getAllSpawnerData() {
-        return Collections.unmodifiableCollection(registeredSpawnerData.values());
+        return registeredSpawnerData.values();
     }
 
     public Collection<SpawnerData> getAllEnabledSpawnerData() {
@@ -134,8 +134,12 @@ public class SpawnerManager {
         return spawnersInWorld.remove(spawner.getLocation());
     }
 
+    public Map<Location, PlacedSpawner> spawners() {
+        return spawnersInWorld;
+    }
+
     public Collection<PlacedSpawner> getSpawners() {
-        return Collections.unmodifiableCollection(spawnersInWorld.values());
+        return spawnersInWorld.values();
     }
 
     public void addSpawners(Map<Location, PlacedSpawner> spawners) {

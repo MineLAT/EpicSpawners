@@ -146,7 +146,7 @@ public class SpawnerTier {
     }
 
     public List<CompatibleMaterial> getSpawnBlocksList() {
-        return Collections.unmodifiableList(spawnBlocks);
+        return spawnBlocks;
     }
 
     public boolean isSpawnOnFire() {
@@ -225,7 +225,7 @@ public class SpawnerTier {
     }
 
     public List<EntityType> getEntities() {
-        return Collections.unmodifiableList(entities);
+        return entities;
     }
 
     public void setEntities(List<EntityType> entities) {
@@ -233,7 +233,7 @@ public class SpawnerTier {
     }
 
     public List<CompatibleMaterial> getBlocks() {
-        return Collections.unmodifiableList(blocks);
+        return blocks;
     }
 
     public void setBlocks(List<CompatibleMaterial> blocks) {
@@ -241,7 +241,7 @@ public class SpawnerTier {
     }
 
     public List<ItemStack> getItems() {
-        return Collections.unmodifiableList(items);
+        return items;
     }
 
     public void setItems(List<ItemStack> items) {
@@ -249,7 +249,7 @@ public class SpawnerTier {
     }
 
     public List<String> getCommands() {
-        return Collections.unmodifiableList(commands);
+        return commands;
     }
 
     public void setCommands(List<String> commands) {
@@ -337,7 +337,7 @@ public class SpawnerTier {
     }
 
     public List<SpawnCondition> getConditions() {
-        return Collections.unmodifiableList(spawnConditions);
+        return spawnConditions;
     }
 
     public String toString() {

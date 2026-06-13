@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.EntityType;
 
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
@@ -33,7 +32,7 @@ public class PlayerData {
     }
 
     public Map<EntityType, Integer> getEntityKills() {
-        return Collections.unmodifiableMap(entityKills);
+        return entityKills;
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.songoda.epicspawners.boost;
 
 import com.songoda.epicspawners.boost.types.Boosted;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,7 +19,7 @@ public class BoostManager {
     }
 
     public Set<Boosted> getBoosts() {
-        return Collections.unmodifiableSet(registeredBoosts);
+        return registeredBoosts;
     }
 
     public void addBoosts(List<Boosted> boosts) {
