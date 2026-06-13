@@ -12,13 +12,14 @@ idea {
 }
 
 repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'https://oss.sonatype.org/content/repositories/central' }
+    maven { url 'https://repo.viaversion.com/' }
     maven { url 'https://repo.craftaro.com/repository/public/' }
     maven { url 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
-    maven { url 'https://jitpack.io' }
-    mavenCentral()
 }
 
 processResources {
@@ -32,8 +33,9 @@ processResources {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT'
 
+    compileOnly 'com.viaversion:viaversion-api:5.0.1'
     compileOnly 'me.clip:placeholderapi:2.11.5'
-    compileOnly 'com.github.brcdev-minecraft:shopgui-api:1.0.0'
+    compileOnly 'com.github.brcdev-minecraft:shopgui-api:2.4.0'
 
     implementation 'org.apache.commons:commons-lang3:3.14.0'
     implementation 'org.apache.commons:commons-text:1.11.0'
