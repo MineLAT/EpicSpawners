@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -22,20 +23,21 @@ public class BlacklistHandler {
         blackConfig.load();
         loadBlacklistFile();
         list = blackConfig.getStringList("settings.blacklist")
-                .stream().map(String::toLowerCase).collect(Collectors.toList());
+                .stream().map(s -> s.toLowerCase(Locale.ROOT)).collect(Collectors.toList());
     }
 
     public boolean isBlacklisted(Player player, boolean notify) {
-        if (list.contains(player.getWorld().getName().toLowerCase())) {
-            if (notify)
-                EpicSpawners.getInstance().getLocale().getMessage("event.block.blacklisted").sendPrefixedMessage(player);
-            return true;
-        }
+//        if (list.contains(player.getWorld().getName().toLowerCase(Locale.ROOT))) {
+//            if (notify)
+//                EpicSpawners.getInstance().getLocale().getMessage("event.block.blacklisted").sendPrefixedMessage(player);
+//            return true;
+//        }
         return false;
     }
 
     public boolean isBlacklisted(World world) {
-        return list.contains(world.getName().toLowerCase());
+//        return list.contains(world.getName().toLowerCase(Locale.ROOT));
+        return false;
     }
 
     private void loadBlacklistFile() {

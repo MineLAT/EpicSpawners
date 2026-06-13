@@ -130,8 +130,8 @@ public class BlockListeners implements Listener {
 
             doLiquidRepel(block, true);
 
-            if (plugin.getBlacklistHandler().isBlacklisted(player, true)
-                    || !player.hasPermission("epicspawners.place." + spawnerTier.getSpawnerData().getIdentifyingName().replace(" ", "_"))
+            if (//plugin.getBlacklistHandler().isBlacklisted(player, true) ||
+                    !player.hasPermission("epicspawners.place." + spawnerTier.getSpawnerData().getIdentifyingName().replace(" ", "_"))
                     || doForceCombine(player, spawner, event)) {
                 event.setCancelled(true);
                 return;
@@ -200,10 +200,10 @@ public class BlockListeners implements Listener {
             if (CompatibleMaterial.getMaterial(block) != CompatibleMaterial.SPAWNER
                     || ((CreatureSpawner) block.getState()).getSpawnedType() == EntityType.FIREWORK) return;
 
-            if (plugin.getBlacklistHandler().isBlacklisted(event.getPlayer(), true)) {
-                event.setCancelled(true);
-                return;
-            }
+//            if (plugin.getBlacklistHandler().isBlacklisted(event.getPlayer(), true)) {
+//                event.setCancelled(true);
+//                return;
+//            }
 
             Location location = block.getLocation();
 

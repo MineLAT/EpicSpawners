@@ -79,7 +79,7 @@ public class InteractListeners implements Listener {
 
         event.setCancelled(true);
 
-        if (plugin.getBlacklistHandler().isBlacklisted(player, true)) return;
+        //if (plugin.getBlacklistHandler().isBlacklisted(player, true)) return;
 
         SpawnerManager spawnerManager = plugin.getSpawnerManager();
 
@@ -198,7 +198,9 @@ public class InteractListeners implements Listener {
                     event.setCancelled(true);
                 }
             }
-        } else if (isSpawner && !plugin.getBlacklistHandler().isBlacklisted(player, false)) {
+        } else if (isSpawner
+                //&& !plugin.getBlacklistHandler().isBlacklisted(player, false)
+        ) {
             PlacedSpawner spawner = plugin.getSpawnerManager().getSpawnerFromWorld(location);
             if (!player.isSneaking() && event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (spawner.getPlacedBy() == null && Settings.DISABLE_NATURAL_SPAWNERS.getBoolean()) return;

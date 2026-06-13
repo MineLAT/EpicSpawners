@@ -13,7 +13,6 @@ import com.songoda.core.hooks.EconomyManager;
 import com.songoda.core.hooks.EntityStackerManager;
 import com.songoda.core.hooks.HologramManager;
 import com.songoda.core.hooks.ProtectionManager;
-import com.songoda.epicspawners.blacklist.BlacklistHandler;
 import com.songoda.epicspawners.boost.BoostManager;
 import com.songoda.epicspawners.commands.CommandBoost;
 import com.songoda.epicspawners.commands.CommandChange;
@@ -68,7 +67,7 @@ public class EpicSpawners extends SongodaPlugin {
     private CommandManager commandManager;
     private LootablesManager lootablesManager;
 
-    private BlacklistHandler blacklistHandler;
+    //private BlacklistHandler blacklistHandler;
 
     private AppearanceTask appearanceTask;
     //private SpawnerParticleTask particleTask;
@@ -137,7 +136,7 @@ public class EpicSpawners extends SongodaPlugin {
         this.boostManager = new BoostManager();
         this.spawnManager = new SpawnManager();
         this.spawnerManager = new SpawnerManager(this);
-        this.blacklistHandler = new BlacklistHandler();
+        //this.blacklistHandler = new BlacklistHandler();
         this.playerActionManager = new PlayerDataManager();
 
         this.lootablesManager = new LootablesManager();
@@ -209,14 +208,15 @@ public class EpicSpawners extends SongodaPlugin {
     public void onConfigReload() {
         this.setLocale(Settings.LANGUGE_MODE.getString(), true);
         this.locale.reloadMessages();
-        this.blacklistHandler.reload();
+        //this.blacklistHandler.reload();
         if (spawnerManager.wasConfigModified())
             this.spawnerManager.reloadFromFile();
     }
 
     @Override
     public List<Config> getExtraConfig() {
-        return Arrays.asList(spawnerManager.getSpawnerConfig(), blacklistHandler.getBlackConfig());
+        //return Arrays.asList(spawnerManager.getSpawnerConfig(), blacklistHandler.getBlackConfig());
+        return Arrays.asList(spawnerManager.getSpawnerConfig());
     }
 
     private void loadHolograms() {
@@ -331,9 +331,9 @@ public class EpicSpawners extends SongodaPlugin {
         return playerActionManager;
     }
 
-    public BlacklistHandler getBlacklistHandler() {
-        return blacklistHandler;
-    }
+//    public BlacklistHandler getBlacklistHandler() {
+//        return blacklistHandler;
+//    }
 
     public SpawnerManager getSpawnerManager() {
         return spawnerManager;
