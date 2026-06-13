@@ -37,7 +37,8 @@ public class SpawnConditionBiome implements SpawnCondition {
 
     @Override
     public boolean isMet(PlacedSpawner spawner) {
-        return biomes.contains(spawner.getLocation().getBlock().getBiome());
+        return true;
+        //return biomes.contains(spawner.getLocation().getBlock().getBiome());
     }
 
     private String getFriendlyBiomeName() {
